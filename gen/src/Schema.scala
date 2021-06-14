@@ -19,20 +19,13 @@ final case class Schema(
     name: String, 
     description: Option[String]
   ) = {
-
-    val paramRoot = implicitly[Repr[Req]].apply
-    val params = paramRoot.schema match { 
-      case ObjParam(_, props) => props
-      case ArrParam(_, items) => items
-      case x => x :: Nil
-    }
-
-    MethodInfo(
-      name,
-      description,
-      ???, //params, 
-      implicitly[Repr[Resp]].apply.schema
-    )
+    ???
+    // MethodInfo(
+    //   name,
+    //   description,
+    //   implicitly[Repr[Req]].apply,
+    //   implicitly[Repr[Resp]].apply.head.schema
+    // )
   }
 
   def dummyMethod(method: MethodInfo): Schema = {
@@ -44,15 +37,11 @@ final case class Schema(
 object Schema {
 
   trait Repr[A] {
-    def apply: Param
-  }
-
-  trait UnfoldRepr[A] {
-    def apply: Seq[Param]
+    def apply: Parameter
   }
 
   case class Components(
-    schemas: Map[String, ObjParam]
+    schemas: Map[String, ProductParameter]
   )
 
   case class ServerInfo(
@@ -83,26 +72,36 @@ object Schema {
   final case class MethodInfo(
     name: String,
     summary: Option[String],
-    params: Seq[Param],
-    result: ParamValue
+    params: Seq[ProductParameterField],
+    result: Parameter
   )
 
-  final case class Param( 
+  final case class ProductParameterField( 
     name: String,
     description: Option[String],
     required: Option[Boolean],
-    schema: ParamValue
+    schema: Parameter
   )
 
   // element
-  sealed trait ParamValue
-  sealed trait SingleParamValue extends ParamValue
-  final case class RefParam(`$ref`: String) extends SingleParamValue
-  final case class ValParam(`type`: String) extends SingleParamValue
-  final case class ArrParam(`type`: String, items: SingleParamValue) extends ParamValue
-  final case class ObjParam(
-    required: Seq[String],
-    properties: Seq[ParamValue]
-  ) extends ParamValue
+  sealed trait Parameter
+  sealed trait SingularParameter extends Parameter
+
+  final case class ProductParameter(
+    properties: Seq[ProductParameterField]
+  ) extends SingularParameter
+
+  final case class CoproductParameter(
+    elements: Seq[Parameter]
+  ) extends SingularParameter
+
+  final case class SeqParameter(
+    schema: SingularParameter
+  ) extends Parameter
+
+  final case class ValueParameter(
+    `type`: String
+  ) extends SingularParameter
+
 
 }
