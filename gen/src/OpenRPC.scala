@@ -3,6 +3,10 @@ import gen.Agnostic.CoproductParameter
 import cats.instances.tailRec
 import scala.annotation.tailrec
 import gen.Agnostic.OptionalParameter
+import io.circe.syntax._
+import io.circe.{Json, Encoder}
+import io.circe.generic.auto._
+
 
 object OpenRpc {
 
@@ -32,7 +36,20 @@ object OpenRpc {
     servers: Seq[ServerInfo],
     methods: Seq[Method],
     components: Components
-  )
+  ) {
+
+    private implicit lazy val encodeParam: Encoder[JsonSchema.Param] = Encoder.instance {
+      case bar @ JsonSchema.RefParam(_) => bar.asJson
+      case baz @ JsonSchema.ValParam(_) => baz.asJson
+      case qux @ JsonSchema.ArrParam(_, _) => qux.asJson
+      case foo @ JsonSchema.CoproductDefn(_) => foo.asJson
+    }
+
+    lazy val jsonValue:Json = {
+      this.asJson.deepDropNullValues
+    }
+
+   }
 
   case class Method(
     name: String,
