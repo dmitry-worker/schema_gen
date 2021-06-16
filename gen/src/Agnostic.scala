@@ -6,7 +6,6 @@ final case class RPCParam(
 ) extends scala.annotation.StaticAnnotation
 
 
-
 object Agnostic {
 
   final case class Schema(
@@ -25,7 +24,8 @@ object Agnostic {
       val paramsObject = implicitly[Repr[Req]].apply
       val parameters = paramsObject match {
         case ProductParameter(_, properties) => properties
-        case _ => Nil
+        case OptionalParameter(ProductParameter(_, properties)) => properties
+        case _ => throw new IllegalArgumentException("Only case class / option is allowed")
       }
 
       val resultObject = implicitly[Repr[Resp]].apply
