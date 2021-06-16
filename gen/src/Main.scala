@@ -23,12 +23,14 @@ object Main {
 
     implicit val reqGen:Agnostic.Repr[GetBlockByIndexRequest] = gen[GetBlockByIndexRequest]
     implicit val respGen = gen[BlockResponse]
-    val inputParam = Agnostic.ProductParameterField("name", Some("desc"), Agnostic.ValueParameter("string"))
-    val outputParam = Agnostic.ProductParameterField("result", Some("result desc"), Agnostic.ValueParameter("intger"))
 
     val schema = Agnostic.Schema()
-      .method[GetBlockByIndexRequest, BlockResponse]("testMethod", Some("testMethodDescr"))
-      .method[GetBlockByHashRequest, BlockResponse]("anotherTestMethod", Some("testMethodDescr"))
+      .method[AuthorizationSignRequest, AuthorizationSignResponse]("authorizationSign", Some("testMethodDescr"))
+      .method[GetEtcSnapshotBalanceWithProofRequest, GetEtcSnapshotBalanceWithProofResponse]("getEtcSnapshotBalanceWithProof", Some("testMethodDescr"))
+      .method[MiningRequest, MiningResponse]("mine", Some("testMethodDescr"))
+      .method[GetMiningStateRequest, GetMiningStateResponse]("getMiningState", Some("testMethodDescr"))
+      .method[CancelMiningRequest, CancelMiningResponse]("cancelMining", Some("testMethodDescr"))
+
 
     implicit lazy val encodeParam: Encoder[JsonSchema.Param] = Encoder.instance {
       case bar @ JsonSchema.RefParam(_) => bar.asJson
@@ -40,18 +42,6 @@ object Main {
     val orpc = OpenRpc.createSchema(schema).asJson.deepDropNullValues.spaces2
     
     println(orpc)
-
-    // val orpc = OpenRpc.Schema(
-    //   info = OpenRpc.Info(
-    //     version = "1.0.0",
-    //     title = "Test schema",
-    //     description = "About to test and validate schema",
-    //     termsOfService = None,
-    //     contact = None,
-    //     license = None
-    //   ),
-    //   servers = Nil,
-    // )
 
   }
   
