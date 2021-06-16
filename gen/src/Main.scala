@@ -1,10 +1,12 @@
 package gen
 
-import Repr._
+import SchemaMacros._
 import io.circe.syntax._
 import io.circe.generic.auto._
 
 case class GetBlockByIndexRequest(i: Int)
+
+case class GetBlockByHashRequest(hash: Int)
 
 case class Block( 
   hash: String,
@@ -18,26 +20,30 @@ object Main {
 
   def main(args:Array[String]):Unit = {
 
-    implicit val reqGen:Schema.Repr[GetBlockByIndexRequest] = gen[GetBlockByIndexRequest]
+    implicit val reqGen:Agnostic.Repr[GetBlockByIndexRequest] = gen[GetBlockByIndexRequest]
     implicit val respGen = gen[BlockResponse]
-    val inputParam = Schema.Param("name", Some("desc"), Some(true), Schema.ValParam("string"))
-    val outputParam = Schema.Param("result", Some("result desc"), None, Schema.ValParam("intger"))
+    val inputParam = Agnostic.ProductParameterField("name", Some("desc"), Agnostic.ValueParameter("string"))
+    val outputParam = Agnostic.ProductParameterField("result", Some("result desc"), Agnostic.ValueParameter("intger"))
 
-    val schema = Schema(
-      info = Schema.SchemaInfo(
-        version = "1.0.0",
-        title = "Test schema",
-        description = "About to test and validate schema",
-        termsOfService = None,
-        contact = None,
-        license = None
-      ),
-      components = Schema.Components(Map()),
-      servers = Nil,
-      methods = Nil
-    ).method[GetBlockByIndexRequest, BlockResponse]("testMethod", Some("testMethodDescr"))
-    val json = schema.asJson.deepDropNullValues.spaces2
-    println(json)
+    val schema = Agnostic.Schema()
+      .method[GetBlockByIndexRequest, BlockResponse]("testMethod", Some("testMethodDescr"))
+      .method[GetBlockByHashRequest, BlockResponse]("anotherTestMethod", Some("testMethodDescr"))
+
+    val orpc = OpenRpc.createSchema(schema).asJson.deepDropNullValues.spaces2
+    
+    println(orpc)
+
+    // val orpc = OpenRpc.Schema(
+    //   info = OpenRpc.Info(
+    //     version = "1.0.0",
+    //     title = "Test schema",
+    //     description = "About to test and validate schema",
+    //     termsOfService = None,
+    //     contact = None,
+    //     license = None
+    //   ),
+    //   servers = Nil,
+    // )
 
   }
   

@@ -1,0 +1,51 @@
+package gen
+
+import language.experimental.macros, magnolia._
+import Agnostic._
+
+object SchemaMacros { 
+
+  type Typeclass[T] = Repr[T]
+  
+  def combine[T](ctx: CaseClass[Repr, T]): Repr[T] = new Repr[T] {
+    def apply: Parameter = {
+      ProductParameter(
+        label = ctx.typeName.short,
+        properties = ctx.parameters.map { p =>
+          val schema = p.typeclass.apply
+          ProductParameterField(
+            name = p.label,
+            description = None,
+            schema = schema
+          )
+        } 
+      )
+    }
+  }
+  
+  def dispatch[T](ctx: SealedTrait[Repr, T]): Repr[T] = new Repr[T] {
+    def apply: Parameter = {
+      val elements = ctx.subtypes.map(_.typeclass.apply)
+      CoproductParameter(elements)
+    }
+  }
+  
+  implicit def optParam[T](implicit inner: Repr[T]): Repr[Option[T]] = new Repr[Option[T]] {
+    def apply: Parameter = OptionalParameter(inner.apply)
+  }
+  
+  implicit val paramInt: Repr[Int] = new Repr[Int] {
+    def apply: Parameter = ValueParameter(
+      `type` = "integer"
+    )
+  }
+  
+  implicit val paramString: Repr[String] = new Repr[String] {
+    def apply: Parameter = ValueParameter(
+      `type` = "string"
+    )
+  }
+
+  implicit def gen[T]: Repr[T] = macro Magnolia.gen[T]
+
+}
