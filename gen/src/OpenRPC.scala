@@ -75,7 +75,7 @@ object OpenRpc {
         }
       }
 
-      parameters.foldLeft(Map[String, JsonSchema.Defn]()) { (r, el) => collect1(r, el) }
+      parameters.foldLeft(acc) { (r, el) => collect1(r, el) }
 
     }
 

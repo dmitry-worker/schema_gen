@@ -8,11 +8,8 @@ object JsonSchema {
     properties: Map[String, Param]
   )
   
-  case class CoproductDefn(
-    allOf: Seq[Param]
-  ) extends Param // ???
-
   sealed trait Param
+  case class CoproductDefn( allOf: Seq[Param] ) extends Param
   case class RefParam( `$ref`: String ) extends Param
   case class ValParam( `type`: String ) extends Param
   case class ArrParam( `type`: String = "array", items: Param ) extends Param
