@@ -47,7 +47,7 @@ final case class Schema(
       description,
       parameters,
       result
-    ) :: Nil)
+    ) :: this.methods)
 
   }
 
