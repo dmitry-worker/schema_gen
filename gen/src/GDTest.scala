@@ -1,4 +1,4 @@
-package gen
+package gen.gd
 
 case class AuthorizationSignRequest(etcPrivateKey: String, midnightAddress: String)
 case class AuthorizationSignResponse(signature: String)

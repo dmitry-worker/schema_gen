@@ -1,5 +1,6 @@
 package gen
 
+import gen.gd._
 import SchemaMacros._
 
 // Just invoke `mill gen.run`

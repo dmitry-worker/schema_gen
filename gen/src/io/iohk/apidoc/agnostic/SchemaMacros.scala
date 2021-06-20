@@ -1,7 +1,7 @@
-package gen
+package io.iohk.apidoc
+package agnostic
 
 import language.experimental.macros, magnolia._
-import Agnostic._
 
 object SchemaMacros { 
 
