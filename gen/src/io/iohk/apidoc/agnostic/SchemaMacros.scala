@@ -2,6 +2,7 @@ package io.iohk.apidoc
 package agnostic
 
 import language.experimental.macros, magnolia._
+import Annotations._
 
 object SchemaMacros { 
 
@@ -12,10 +13,13 @@ object SchemaMacros {
       ProductParameter(
         label = ctx.typeName.short,
         properties = ctx.parameters.map { p =>
+          val description = p.annotations.collectFirst { 
+              case FieldDescription(value) => value
+          }
           val schema = p.typeclass.apply
           ProductParameterField(
             name = p.label,
-            description = None,
+            description = description,
             schema = schema
           )
         } 

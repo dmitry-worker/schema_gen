@@ -1,6 +1,12 @@
 package io.iohk.apidoc
 
-case class AuthorizationSignRequest(etcPrivateKey: String, midnightAddress: String)
+import io.iohk.apidoc.agnostic.Annotations
+
+case class AuthorizationSignRequest(
+  @Annotations.FieldDescription("It's better to hide this one.")
+  etcPrivateKey: String, 
+  midnightAddress: String
+)
 case class AuthorizationSignResponse(signature: String)
 
 case class GetEtcSnapshotBalanceWithProofRequest(address: String)
