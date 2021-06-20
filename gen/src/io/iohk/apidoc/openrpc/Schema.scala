@@ -6,13 +6,15 @@ import io.circe.{Json, Encoder}
 import io.circe.generic.auto._
 
 /**
-  * JsonSchema standard 
+  * OpenRPC standard definition is two-fold
+  * First is self-defined methods and parameters https://spec.open-rpc.org
+  * Second is JsonSchema https://json-schema.org/specification.html
   *
-  * @param openrpc
-  * @param info
-  * @param servers
-  * @param methods
-  * @param components
+  * @param openrpc - version of OpenRPC specification
+  * @param info - Schema meta-information
+  * @param servers - Urls supporting current schema
+  * @param methods - RPC methods (Request + Response definition)
+  * @param components - Types reference (Schema domain model)
   */
 final case class Schema(
   openrpc: String = "1.0.0-rc1",
@@ -88,12 +90,10 @@ object Schema {
     url: String
   )
 
-
-  
   def from(src: agnostic.Schema): Schema = {
     val components = {
       val allParameters = src.methods.flatMap(_.allParameters)
-      Method.collect0(Map(), allParameters)
+      Method.collectAllTypes(Map(), allParameters)
     }
 
     Schema(      

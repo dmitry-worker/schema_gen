@@ -7,7 +7,6 @@ object gen extends ScalaModule {
   def scalaVersion = "2.12.13"
 
   def ivyDeps = Agg(
-    ivy"org.scala-lang.modules::scala-xml:2.0.0",
     ivy"com.chuusai::shapeless:2.3.7",
     ivy"io.circe::circe-core:0.14.1",
     ivy"io.circe::circe-generic:0.14.1",

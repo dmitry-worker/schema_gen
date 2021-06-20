@@ -22,7 +22,13 @@ final case class Schema(
     name: String, 
     description: Option[String]
   ): Schema = {
-    
+
+    // Create a representation schema for the result type
+    // Assuming that result is always a single object
+    val resultObject = implicitly[Repr[Resp]].apply
+
+    // Create a representation schema for the parameters container
+    // Assuming it's a case class with multiple parameters (flattened in the request)
     val paramsObject = implicitly[Repr[Req]].apply
     
     val parameters = paramsObject match {
@@ -30,8 +36,6 @@ final case class Schema(
       case OptionalParameter(ProductParameter(_, properties)) => properties
       case _ => throw new IllegalArgumentException("Only case class / option is allowed")
     }
-
-    val resultObject = implicitly[Repr[Resp]].apply
     
     val result = resultObject match {
       case ProductParameter(label, properties) if properties.size == 1 => 
@@ -42,12 +46,8 @@ final case class Schema(
         ProductParameterField("result", None, resultObject)
     }
 
-    copy(methods = Method(
-      name,
-      description,
-      parameters,
-      result
-    ) :: this.methods)
+    val newMethod = Method(name, description, parameters, result)
+    copy(methods = newMethod :: this.methods)
 
   }
 
