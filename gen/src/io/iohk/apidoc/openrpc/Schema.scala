@@ -14,7 +14,7 @@ import io.circe.generic.auto._
   * @param methods
   * @param components
   */
-case class Schema(
+final case class Schema(
   openrpc: String = "1.0.0-rc1",
   info: Info = Info.empty,
   servers: Seq[Schema.ServerInfo] = Nil,
@@ -25,17 +25,28 @@ case class Schema(
   /**
     * Sets openrpc protocol version
     * @param newVersion New version of RPC specification
+    * @return new instance of schema with version redefined
     */
-  def withVersion(newVersion: String) = {
+  def withVersion(newVersion: String):Schema = {
     copy(openrpc = newVersion)
   }
 
   /**
     * Sets meta information for JsonSchema
     * @param newInfo New schema information
+    * @return new instance of schema with info redefined
     */
-  def withInfo(newInfo: Info) = {
+  def withInfo(newInfo: Info):Schema = {
     copy(info = newInfo)
+  }
+
+  /**
+    * Sets the servers with this schema deployed
+    * @param newServers
+    * @return new instance of schema with servers redefined
+    */
+  def withServers(newServers: Seq[Schema.ServerInfo]):Schema = {
+    copy(servers = newServers)
   }
 
   // this is required for circe to encode only inner members of the CoProduct 
@@ -48,7 +59,7 @@ case class Schema(
   }
 
   /**
-    * @return Complete schema for publishing in the application
+    *  Complete OpenRPC schema json representation
     */
   lazy val jsonValue:Json = {
     this.asJson.deepDropNullValues
@@ -58,14 +69,27 @@ case class Schema(
 
 object Schema {
 
-  case class Components(
+  /**
+    * Contains all the JsonSchema definitions 
+    * That are mentioned in parameters AST
+    * 
+    * This cannot  
+    * @param schemas - list of definitions
+    */
+  final case class Components(
     schemas: Map[String, jsonschema.TypeDefinition]
   )
 
-  case class ServerInfo(
+  /**
+    * Contains list of endpoints supporting this schema.
+    * @param url - the endpoint address.
+    */
+  final case class ServerInfo(
     url: String
   )
 
+
+  
   def from(src: agnostic.Schema): Schema = {
     val components = {
       val allParameters = src.methods.flatMap(_.allParameters)
