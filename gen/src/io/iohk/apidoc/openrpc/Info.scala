@@ -10,6 +10,15 @@ case class Info(
 )
 
 object Info {
+
+  val empty = Info(
+    version = "",
+    title = "",
+    description = "",
+    termsOfService = None,
+    contact = None,
+    license = None
+  )
   
   case class Contact(
     name: String,
@@ -21,5 +30,5 @@ object Info {
     name: String,
     url: Option[String]
   )
-  
+
 }

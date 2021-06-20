@@ -1,7 +1,6 @@
-package gen
+package io.iohk.apidoc
 
-import gen.gd._
-import SchemaMacros._
+import agnostic.SchemaMacros._
 
 // Just invoke `mill gen.run`
 // Then check the result on the https://playground.open-rpc.org/
@@ -11,14 +10,14 @@ object Main {
 
     // this is the ONLY thing required to define a schema
     // TODO: provide examples for each method
-    val agnostic = Agnostic.Schema()
+    val definition = agnostic.Schema()
       .method[AuthorizationSignRequest, AuthorizationSignResponse]("authorizationSign", Some("testMethodDescr"))
       .method[GetEtcSnapshotBalanceWithProofRequest, GetEtcSnapshotBalanceWithProofResponse]("getEtcSnapshotBalanceWithProof", Some("testMethodDescr"))
       .method[MiningRequest, MiningResponse]("mine", Some("testMethodDescr"))
       .method[GetMiningStateRequest, GetMiningStateResponse]("getMiningState", Some("testMethodDescr"))
       .method[CancelMiningRequest, CancelMiningResponse]("cancelMining", Some("testMethodDescr"))
 
-    val orpc = OpenRpc.createSchema(agnostic)
+    val orpc = openrpc.Schema.from(definition)
     
     println(orpc.jsonValue.spaces2)
 

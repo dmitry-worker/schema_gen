@@ -1,4 +1,4 @@
-package gen.gd
+package io.iohk.apidoc
 
 case class AuthorizationSignRequest(etcPrivateKey: String, midnightAddress: String)
 case class AuthorizationSignResponse(signature: String)
