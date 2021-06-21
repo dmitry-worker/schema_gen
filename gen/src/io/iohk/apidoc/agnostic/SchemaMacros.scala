@@ -38,15 +38,27 @@ object SchemaMacros {
     def apply: Parameter = OptionalParameter(inner.apply)
   }
   
-  implicit val paramInt: Repr[Int] = new Repr[Int] {
+  implicit val intParam: Repr[Int] = new Repr[Int] {
     def apply: Parameter = ValueParameter(
       `type` = "integer"
     )
   }
+
+  implicit val numberParam: Repr[Double] = new Repr[Double] {
+    def apply: Parameter = ValueParameter(
+      `type` = "number"
+    )
+  }
   
-  implicit val paramString: Repr[String] = new Repr[String] {
+  implicit val stringParam: Repr[String] = new Repr[String] {
     def apply: Parameter = ValueParameter(
       `type` = "string"
+    )
+  }
+
+  implicit val booleanParam: Repr[Boolean] = new Repr[Boolean] {
+    def apply: Parameter = ValueParameter(
+      `type` = "boolean"
     )
   }
 
