@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-07-11T15:35:56.763Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5.1 Safari/605.1.15" etag="kRBV8WyFI7EqklHJw3V9" version="21.6.1" type="github">
+<mxfile host="app.diagrams.net" modified="2023-07-13T11:26:28.567Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5.1 Safari/605.1.15" etag="mvaVIIzSSlPZzIyDYS8S" version="21.6.2" type="github">
   <diagram id="R2lEEEUBdFMjLlhIrx00" name="Page-1">
     <mxGraphModel dx="1016" dy="691" grid="1" gridSize="12" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="1654" math="0" shadow="0" extFonts="Permanent Marker^https://fonts.googleapis.com/css?family=Permanent+Marker">
       <root>
@@ -189,43 +189,49 @@
         <mxCell id="DzL8OA4_ko9Ue3zF5h7F-1" value="Existing table, stores mysql mappings" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="69" y="60" width="251" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="GTelm5WPKTPgB7eBgpaJ-1" value="building.building_info" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" vertex="1" parent="1">
+        <mxCell id="GTelm5WPKTPgB7eBgpaJ-1" value="building.building_info" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;" parent="1" vertex="1">
           <mxGeometry x="480" y="654" width="340" height="410" as="geometry" />
         </mxCell>
-        <mxCell id="GTelm5WPKTPgB7eBgpaJ-2" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" vertex="1" parent="GTelm5WPKTPgB7eBgpaJ-1">
+        <mxCell id="GTelm5WPKTPgB7eBgpaJ-2" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" parent="GTelm5WPKTPgB7eBgpaJ-1" vertex="1">
           <mxGeometry y="30" width="340" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="GTelm5WPKTPgB7eBgpaJ-3" value="PK, FK" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;" vertex="1" parent="GTelm5WPKTPgB7eBgpaJ-2">
+        <mxCell id="GTelm5WPKTPgB7eBgpaJ-3" value="PK, FK" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;" parent="GTelm5WPKTPgB7eBgpaJ-2" vertex="1">
           <mxGeometry width="50" height="30" as="geometry">
             <mxRectangle width="50" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="GTelm5WPKTPgB7eBgpaJ-4" value="legacy_property_id Long" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;" vertex="1" parent="GTelm5WPKTPgB7eBgpaJ-2">
+        <mxCell id="GTelm5WPKTPgB7eBgpaJ-4" value="legacy_property_id Long" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;" parent="GTelm5WPKTPgB7eBgpaJ-2" vertex="1">
           <mxGeometry x="50" width="290" height="30" as="geometry">
             <mxRectangle width="290" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="GTelm5WPKTPgB7eBgpaJ-5" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" vertex="1" parent="GTelm5WPKTPgB7eBgpaJ-1">
+        <mxCell id="GTelm5WPKTPgB7eBgpaJ-5" value="" style="shape=partialRectangle;collapsible=0;dropTarget=0;pointerEvents=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="GTelm5WPKTPgB7eBgpaJ-1" vertex="1">
           <mxGeometry y="60" width="340" height="350" as="geometry" />
         </mxCell>
-        <mxCell id="GTelm5WPKTPgB7eBgpaJ-6" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;" vertex="1" parent="GTelm5WPKTPgB7eBgpaJ-5">
+        <mxCell id="GTelm5WPKTPgB7eBgpaJ-6" value="" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;" parent="GTelm5WPKTPgB7eBgpaJ-5" vertex="1">
           <mxGeometry width="50" height="350" as="geometry">
             <mxRectangle width="50" height="350" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="GTelm5WPKTPgB7eBgpaJ-7" value="`property_name` varchar(255) DEFAULT NULL,&#xa;`building_class_id` int(11) DEFAULT NULL,&#xa;`property_size` bigint(20) DEFAULT NULL,&#xa;`year_built` int(11) DEFAULT NULL,&#xa;`year_renovated` int(11) DEFAULT NULL,&#xa;`floors` int(11) DEFAULT NULL,&#xa;`landlord` varchar(255) DEFAULT NULL,&#xa;`property_type_id` bigint(20) DEFAULT NULL,&#xa;`property_subtype_id` bigint(20) DEFAULT NULL,&#xa;`parking_ratio` float DEFAULT NULL,&#xa;`lot_size` float DEFAULT NULL,&#xa;`occupancy_percentage` float DEFAULT NULL,&#xa;`zoning` varchar(255) DEFAULT NULL,&#xa;`floor_area_ratio` float DEFAULT NULL,&#xa;`ceiling_height` varchar(20) DEFAULT NULL,&#xa;`loading_docks_count` int(11) DEFAULT NULL,&#xa;`sprinkler` tinyint(1) DEFAULT NULL,&#xa;`ground_lvl_doors_count` int(11) DEFAULT NULL,&#xa;" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;" vertex="1" parent="GTelm5WPKTPgB7eBgpaJ-5">
+        <mxCell id="GTelm5WPKTPgB7eBgpaJ-7" value="`property_name` varchar(255) DEFAULT NULL,&#xa;`building_class_id` int(11) DEFAULT NULL,&#xa;`property_size` bigint(20) DEFAULT NULL,&#xa;`year_built` int(11) DEFAULT NULL,&#xa;`year_renovated` int(11) DEFAULT NULL,&#xa;`floors` int(11) DEFAULT NULL,&#xa;`landlord` varchar(255) DEFAULT NULL,&#xa;`property_type_id` bigint(20) DEFAULT NULL,&#xa;`property_subtype_id` bigint(20) DEFAULT NULL,&#xa;`parking_ratio` float DEFAULT NULL,&#xa;`lot_size` float DEFAULT NULL,&#xa;`occupancy_percentage` float DEFAULT NULL,&#xa;`zoning` varchar(255) DEFAULT NULL,&#xa;`floor_area_ratio` float DEFAULT NULL,&#xa;`ceiling_height` varchar(20) DEFAULT NULL,&#xa;`loading_docks_count` int(11) DEFAULT NULL,&#xa;`sprinkler` tinyint(1) DEFAULT NULL,&#xa;`ground_lvl_doors_count` int(11) DEFAULT NULL,&#xa;" style="shape=partialRectangle;overflow=hidden;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;" parent="GTelm5WPKTPgB7eBgpaJ-5" vertex="1">
           <mxGeometry x="50" width="290" height="350" as="geometry">
             <mxRectangle width="290" height="350" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="GTelm5WPKTPgB7eBgpaJ-10" value="" style="endArrow=ERone;html=1;rounded=1;entryX=0.852;entryY=1.038;entryDx=0;entryDy=0;exitX=0.021;exitY=-0.007;exitDx=0;exitDy=0;startArrow=ERone;startFill=0;endFill=0;entryPerimeter=0;exitPerimeter=0;" edge="1" parent="1" source="GTelm5WPKTPgB7eBgpaJ-1" target="C-vyLk0tnHw3VtMMgP7b-27">
+        <mxCell id="GTelm5WPKTPgB7eBgpaJ-10" value="" style="endArrow=ERone;html=1;rounded=1;entryX=0.852;entryY=1.038;entryDx=0;entryDy=0;exitX=0.021;exitY=-0.007;exitDx=0;exitDy=0;startArrow=ERone;startFill=0;endFill=0;entryPerimeter=0;exitPerimeter=0;" parent="1" source="GTelm5WPKTPgB7eBgpaJ-1" target="C-vyLk0tnHw3VtMMgP7b-27" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="431" y="360" as="sourcePoint" />
             <mxPoint x="310" y="360" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="GTelm5WPKTPgB7eBgpaJ-11" value="Building info prod data, calculated by attribute picking" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="GTelm5WPKTPgB7eBgpaJ-11" value="Building info prod data, calculated by attribute picking" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="520" y="624" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MLft9dt0dUVP6QhvaESZ-1" value="" style="endArrow=ERone;html=1;rounded=1;entryX=0.852;entryY=1.038;entryDx=0;entryDy=0;exitX=-0.015;exitY=0.2;exitDx=0;exitDy=0;startArrow=ERone;startFill=0;endFill=0;entryPerimeter=0;exitPerimeter=0;" edge="1" parent="1" source="GTelm5WPKTPgB7eBgpaJ-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="421" y="808" as="sourcePoint" />
+            <mxPoint x="250" y="420" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
